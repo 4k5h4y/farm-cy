@@ -48,7 +48,9 @@
           </md-list-item>
         </md-list>
       </md-app-drawer>
-      <md-app-content> </md-app-content>
+      <md-app-content>
+        <router-view />
+      </md-app-content>
     </md-app>
   </div>
 </template>

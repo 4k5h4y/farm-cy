@@ -1,15 +1,19 @@
 <template>
-  <div id="login-view">
+  <div id="signup-view">
     <md-app>
       <md-app-content md-alignment="center">
-        <div class="login-container">
+        <div class="signup-container">
           <md-card>
             <md-card-header>
               <md-card-header-text>
-                <div class="md-title">Login</div>
+                <div class="md-title">Sign Up</div>
               </md-card-header-text>
             </md-card-header>
             <md-card-content>
+              <md-field>
+                <label>Name</label>
+                <md-input v-model="name"></md-input>
+              </md-field>
               <md-field>
                 <label>Email</label>
                 <md-input v-model="email" type="email"></md-input>
@@ -18,9 +22,10 @@
                 <label>Password</label>
                 <md-input v-model="password" type="password"></md-input>
               </md-field>
-              <md-button class="md-raised md-primary" @click="login"
-                >login</md-button
-              >
+              <md-field>
+                <label>Confirm Password</label>
+                <md-input v-model="password_2" type="password"></md-input>
+              </md-field>
               <md-button class="md-raised md-primary" @click="signup"
                 >signup</md-button
               >
@@ -34,25 +39,24 @@
 <script>
 import router from "../router/index";
 export default {
-  name: "LoginComponent",
+  name: "SignupComponent",
   data() {
     return {
+      name: undefined,
       email: undefined,
       password: undefined,
+      password_2: undefined,
     };
   },
   methods: {
-    login: () => {
-      router.replace("/home");
-    },
     signup: () => {
-      router.push("/signup");
+      router.replace("/home");
     },
   },
 };
 </script>
 <style scoped>
-.login-container {
+.signup-container {
   margin: -16px;
   display: flex;
   align-items: center;
@@ -61,7 +65,7 @@ export default {
   height: 100vh;
   background-color: aqua;
 }
-#login-view {
+#signup-view {
   height: 100vh;
   width: 100vw;
 }

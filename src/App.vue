@@ -1,24 +1,21 @@
 <template>
   <div id="app">
-    <login-component v-if="!loggedIn" />
-    <home-component v-else />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HomeComponent from "./components/HomeComponent.vue";
-import LoginComponent from "./components/LoginComponent.vue";
-
 export default {
   name: "App",
-  components: {
-    HomeComponent,
-    LoginComponent,
-  },
   data() {
     return {
       loggedIn: false,
     };
+  },
+  mounted() {
+    if (this.loggedIn) {
+      this.$router.replace("/home");
+    }
   },
 };
 </script>
