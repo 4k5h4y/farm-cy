@@ -1,48 +1,36 @@
 <template>
   <div class="page-container">
-    <md-app>
+    <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
-        <md-button
-          class="md-icon-button"
-          @click="toggleMenu"
-          v-if="!menuVisible"
-        >
+        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">Welcome {{ name }}</span>
-        <md-button class="md-accent">
-          <span @click="logOut">logout</span>
-        </md-button>
+        <md-button @click="logOut">logOut</md-button>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="full">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          <span>Navigation</span>
-
-          <div class="md-toolbar-section-end">
-            <md-button class="md-icon-button md-dense" @click="toggleMenu">
-              <md-icon>keyboard_arrow_left</md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
+      <md-app-drawer :md-active.sync="menuVisible">
+        <md-toolbar class="md-transparent" md-elevation="0"
+          >Navigation</md-toolbar
+        >
 
         <md-list>
-          <md-list-item @click="navigate('inventory')">
+          <md-list-item @click="navigate('/home')">
             <md-icon>move_to_inbox</md-icon>
             <span class="md-list-item-text">My Inventory</span>
           </md-list-item>
 
-          <md-list-item @click="navigate('sale')">
+          <md-list-item @click="navigate('/sale')">
             <md-icon>send</md-icon>
             <span class="md-list-item-text">Sale</span>
           </md-list-item>
 
-          <md-list-item @click="navigate('profile')">
+          <md-list-item @click="navigate('/profile')">
             <md-icon>delete</md-icon>
             <span class="md-list-item-text">My Profile</span>
           </md-list-item>
 
-          <md-list-item @click="navigate('spam')">
+          <md-list-item @click="navigate('/home')">
             <md-icon>error</md-icon>
             <span class="md-list-item-text">Spam</span>
           </md-list-item>
@@ -71,24 +59,27 @@
 </style>
 
 <script>
+import router from "../router/index";
 export default {
   name: "HomeComponent",
   data() {
     return {
-      name: "Akshay",
+      name: "",
       menuVisible: false,
     };
   },
   methods: {
-    toggleMenu() {
+    navigate(to_here) {
+      router.push(to_here);
       this.menuVisible = !this.menuVisible;
     },
-    navigate: (to_here) => {
-      console.log("navigated", to_here);
-    },
     logOut: () => {
-      console.log("logged out");
+      localStorage.clear();
+      router.replace("/");
     },
+  },
+  mounted() {
+    this.name = localStorage.getItem("userName");
   },
 };
 </script>

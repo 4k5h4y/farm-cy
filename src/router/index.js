@@ -14,6 +14,12 @@ const routes = [
     children: [{
       path: '/',
       component: InventoryComponent
+    }, {
+      path: '/sale',
+      component: InventoryComponent
+    }, {
+      path: '/profile',
+      component: InventoryComponent
     }]
   },
   {

@@ -1,11 +1,16 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <install-prompt />
+    <update-dialog />
   </div>
 </template>
 
 <script>
+import InstallPrompt from "./components/InstallPrompt.vue";
+import UpdateDialog from "./components/UpdateDialog.vue";
 export default {
+  components: { InstallPrompt, UpdateDialog },
   name: "App",
   data() {
     return {
@@ -13,9 +18,17 @@ export default {
     };
   },
   mounted() {
+    const token = localStorage.getItem("token");
+    this.loggedIn = token !== undefined;
     if (this.loggedIn) {
       this.$router.replace("/home");
     }
+  },
+  methods: {
+    async accept() {
+      this.showUpdateUI = false;
+      await this.$workbox.messageSW({ type: "SKIP_WAITING" });
+    },
   },
 };
 </script>
