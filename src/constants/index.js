@@ -1,1 +1,1 @@
-exports.BASE_URL = "http://192.168.206.175:3000"
+exports.BASE_URL = "https://farm-cy-backend.herokuapp.com"
