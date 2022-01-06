@@ -31,7 +31,7 @@
 </template>
 <script>
 import axios from "axios";
-import router from "../router";
+import Constants from "../constants";
 
 export default {
   name: "InventoryComponent",
@@ -43,7 +43,7 @@ export default {
   mounted() {
     const token = localStorage.getItem("token");
     axios
-      .get("http://192.168.206.175:3000/api/inventory", {
+      .get(Constants.BASE_URL + "/api/inventory", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ export default {
       })
       .catch(() => {
         localStorage.clear();
-        router.replace("/");
+        this.$router.replace("/");
       });
   },
 };

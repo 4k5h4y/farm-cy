@@ -1,11 +1,8 @@
-import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeComponent from '../components/HomeComponent.vue';
 import LoginComponent from '../components/LoginComponent.vue';
 import InventoryComponent from '../components/InventoryComponent.vue';
 import SignupComponent from '../components/SignupComponent.vue';
-
-Vue.use(VueRouter)
 
 const routes = [
   {

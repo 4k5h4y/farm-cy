@@ -44,9 +44,7 @@
 </template>
 <script>
 import axios from "axios";
-import router from "../router/index";
-import BASE_URL from "../constants/index";
-const url = BASE_URL.BASE_URL;
+import Constants from "../constants";
 
 export default {
   name: "LoginComponent",
@@ -62,7 +60,7 @@ export default {
     login() {
       if (this.email && this.password) {
         axios
-          .post(url + "/api/user/login", {
+          .post(Constants.BASE_URL + "/api/user/login", {
             email: this.email,
             password: this.password,
           })
@@ -72,7 +70,7 @@ export default {
               localStorage.setItem("userName", res_.data["name"]);
               localStorage.setItem("userEmail", res_.data["email"]);
               this.loginMessage = res_.data["message"];
-              router.replace("/home");
+              this.$router.replace("/home");
             }
           })
           .catch(() => {

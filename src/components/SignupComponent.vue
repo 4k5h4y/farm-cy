@@ -45,10 +45,9 @@
   </div>
 </template>
 <script>
-import router from "../router/index";
 import axios from "axios";
-import BASE_URL from "../constants/index";
-const url = BASE_URL.BASE_URL;
+import Constants from "../constants";
+
 export default {
   name: "SignupComponent",
   data() {
@@ -71,7 +70,7 @@ export default {
         this.password_2 === this.password
       ) {
         axios
-          .post(url + "/api/user/signup", {
+          .post(Constants.BASE_URL + "/api/user/signup", {
             name: this.name,
             contact: this.contact,
             email: this.email,
@@ -81,7 +80,7 @@ export default {
           .then((res_) => {
             if (res_.status === 201) {
               axios
-                .post(url + "/api/user/login", {
+                .post(Constants.BASE_URL + "/api/user/login", {
                   email: this.email,
                   password: this.password,
                 })
@@ -91,7 +90,7 @@ export default {
                     localStorage.setItem("token", res_.data["token"]);
                     localStorage.setItem("userName", res_.data["name"]);
                     localStorage.setItem("userEmail", res_.data["email"]);
-                    router.replace("/home");
+                    this.$router.replace("/home");
                   }
                 });
             }

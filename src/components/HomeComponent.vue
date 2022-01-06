@@ -59,7 +59,6 @@
 </style>
 
 <script>
-import router from "../router/index";
 export default {
   name: "HomeComponent",
   data() {
@@ -70,12 +69,12 @@ export default {
   },
   methods: {
     navigate(to_here) {
-      router.push(to_here);
+      this.$router.push(to_here);
       this.menuVisible = !this.menuVisible;
     },
-    logOut: () => {
+    logOut() {
       localStorage.clear();
-      router.replace("/");
+      this.$router.replace("/");
     },
   },
   mounted() {
