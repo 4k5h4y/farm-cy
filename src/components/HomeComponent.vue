@@ -77,6 +77,11 @@ export default {
       this.$router.replace("/");
     },
   },
+  beforeMount() {
+    if (!localStorage.getItem("token")) {
+      this.$router.replace("/");
+    }
+  },
   mounted() {
     this.name = localStorage.getItem("userName");
   },
