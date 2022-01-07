@@ -1,22 +1,15 @@
 <template>
-  <div class="update-dialog" v-if="prompt">
-    <div class="update-dialog__content">
-      A new version is found. Refresh to load it?
-    </div>
-    <div class="update-dialog__actions">
-      <button
-        class="update-dialog__button update-dialog__button--confirm"
-        @click="update"
-      >
-        Update
-      </button>
-      <button
-        class="update-dialog__button update-dialog__button--cancel"
-        @click="prompt = false"
-      >
-        Cancel
-      </button>
-    </div>
+  <div class="update-dialog">
+    <md-dialog-confirm
+      :md-active.sync="prompt"
+      :md-click-outside-to-close="false"
+      md-title="Update found!"
+      md-content="A new version is found. Refresh to load it?"
+      md-confirm-text="Update"
+      md-cancel-text="Cancel"
+      @md-cancel="prompt = false"
+      @md-confirm="update"
+    />
   </div>
 </template>
 <script>
@@ -42,30 +35,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.update-dialog {
-  position: fixed;
-  bottom: 0px;
-  border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  padding: 30px;
-  width: 90%;
-  max-width: 700px;
-  color: white;
-  background-color: #2c3e50;
-  text-align: left;
-}
-.update-dialog__actions {
-  display: flex;
-  margin-top: 8px;
-}
-.update-dialog__button {
-  margin-right: 8px;
-}
-.update-dialog__button--confirm {
-  margin-left: auto;
-}
-.update-dialog__button--cancel {
-  background-color: #f64f59;
-}
-</style>
