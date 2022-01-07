@@ -72,9 +72,9 @@ export default {
         axios
           .post(Constants.BASE_URL + "/api/user/signup", {
             name: this.name,
-            contact: this.contact,
+            contact: `+91${this.contact}`,
             email: this.email,
-            password: `+91${this.password}`,
+            password: this.password,
             role: "OWNER",
           })
           .then((res_) => {
