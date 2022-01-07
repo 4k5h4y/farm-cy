@@ -17,7 +17,7 @@ export default {
       loggedIn: false,
     };
   },
-  mounted() {
+  beforeMount() {
     const token = localStorage.getItem("token");
     this.loggedIn = token !== undefined;
     if (this.loggedIn) {
