@@ -65,13 +65,17 @@ export default {
             password: this.password,
           })
           .then((res_) => {
-            if (res_.status === 200) {
-              localStorage.setItem("token", res_.data["token"]);
-              localStorage.setItem("userName", res_.data["name"]);
-              localStorage.setItem("userEmail", res_.data["email"]);
-              this.loginMessage = res_.data["message"];
-              this.$router.replace("/home");
-            }
+            // if (
+            //   res_.status !== 404 ||
+            //   res_.status !== 401 ||
+            //   res_.status !== 403
+            // ) {
+            localStorage.setItem("token", res_.data["token"]);
+            localStorage.setItem("userName", res_.data["name"]);
+            localStorage.setItem("userEmail", res_.data["email"]);
+            this.loginMessage = res_.data["message"];
+            this.$router.replace("/home");
+            // }
           })
           .catch(() => {
             this.loginMessage = "Invalid credentials!";
