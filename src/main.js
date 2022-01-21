@@ -7,10 +7,11 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import router from './router'
 import VueRouter from 'vue-router'
+import Vuelidate from 'vuelidate'
 
 Vue.prototype.$workbox = wb;
 Vue.config.productionTip = false
-
+Vue.use(Vuelidate)
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
 
